@@ -6,14 +6,14 @@
 <style>
     main {
         text-align: center;
-        padding: 1em;
         margin: 0 auto;
     }
 
     h1 {
         color: #ff3e00;
+        margin: 0;
         text-transform: uppercase;
-        font-size: 4em;
+        font-size: 10vw;
         font-weight: 100;
     }
 
@@ -23,6 +23,12 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
+    }
+
+    @media screen and (min-width: 768px) {
+        h1 {
+            padding: 1rem;
+        }
     }
 
 </style>

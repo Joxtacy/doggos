@@ -1,11 +1,9 @@
 <script lang="ts">
+    import type { DogResponse } from "../types/types";
     import Spinner from "./Spinner.svelte";
     import { selected } from "../stores";
 
-    interface DogResponse {
-        message: string;
-        status: string;
-    }
+    let data: Promise<DogResponse>;
 
     const getDog = async (): Promise<DogResponse> => {
         return new Promise<DogResponse>(async (resolve, reject) => {
@@ -20,11 +18,9 @@
         });
     };
 
-    const onClick = () => {
-        data = getDog();
-    };
+    const renewDoggo = () => data = getDog();
 
-    let data = getDog();
+    selected.subscribe(renewDoggo);
 </script>
 
 <style>
@@ -88,5 +84,5 @@
             <div>oh noes {error.message.toLowerCase()}</div>
         {/await}
     </div>
-    <button on:click|preventDefault={onClick} class="new-doggo-button">New Doggo</button>
+    <button on:click|preventDefault={renewDoggo} class="new-doggo-button">New Doggo</button>
 </div>
