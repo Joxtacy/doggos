@@ -30,7 +30,6 @@
             padding: 1rem;
         }
     }
-
 </style>
 
 <main>

@@ -18,7 +18,7 @@
         });
     };
 
-    const renewDoggo = () => data = getDog();
+    const renewDoggo = () => (data = getDog());
 
     selected.subscribe(renewDoggo);
 </script>
@@ -84,5 +84,6 @@
             <div>oh noes {error.message.toLowerCase()}</div>
         {/await}
     </div>
-    <button on:click|preventDefault={renewDoggo} class="new-doggo-button">New Doggo</button>
+    <button on:click|preventDefault={renewDoggo} class="new-doggo-button">New
+        Doggo</button>
 </div>
