@@ -1,6 +1,9 @@
 <script lang="ts">
+    import { animal } from "./stores";
     import DogCard from "./components/DogCard.svelte";
+    import CatCard from "./components/CatCard.svelte";
     import BreedPicker from "./components/BreedPicker.svelte";
+    import ToggleSwitch from "./components/ToggleSwitch.svelte";
 </script>
 
 <style>
@@ -33,9 +36,18 @@
 </style>
 
 <main>
-    <h1>Doggo randomizer</h1>
+    {#if $animal === 'dog'}
+        <h1>Doggo randomizer</h1>
+    {:else if $animal === 'cat'}
+        <h1>Kitty randomizer</h1>
+    {/if}
+    <ToggleSwitch checked />
     <div class="doggo-container">
         <BreedPicker />
-        <DogCard />
+        {#if $animal === 'dog'}
+            <DogCard />
+        {:else if $animal === 'cat'}
+            <CatCard />
+        {/if}
     </div>
 </main>

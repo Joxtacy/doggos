@@ -1,20 +1,53 @@
 <script lang="ts">
-    import { breeds, selected } from "../stores";
+    import { onDestroy } from "svelte";
+    import { breeds, selected, animal } from "../stores";
 
-    const getBreedList = () => {
-        if ($breeds.length === 1) {
-            fetch("https://dog.ceo/api/breeds/list/all")
-                .then((res) => res.json())
-                .then((json) => {
-                    breeds.update((n) => {
-                        return n.concat(Object.keys(json.message));
+    const getBreedList = (animal: string) => {
+        const defaultBreed = {
+            id: "random",
+            name: "random",
+        };
+        switch (animal) {
+            case "dog": {
+                fetch("https://dog.ceo/api/breeds/list/all")
+                    .then((res) => res.json())
+                    .then((json) => {
+                        const keys = Object.keys(json.message);
+                        const keysAndObjs = keys.map((key) => ({
+                            id: key,
+                            name: key,
+                        }));
+                        const dogBreeds = [defaultBreed, ...keysAndObjs];
+                        breeds.set(dogBreeds);
+                        selected.set(defaultBreed);
                     });
-                    selected.set($breeds[0]);
-                });
+                break;
+            }
+            case "cat": {
+                fetch("https://api.thecatapi.com/v1/breeds")
+                    .then((res) => res.json())
+                    .then((json) => {
+                        const catBreeds = [
+                            defaultBreed,
+                            ...json.map((breed) => ({
+                                id: breed.id,
+                                name: breed.name,
+                            })),
+                        ];
+                        breeds.set(catBreeds);
+                        selected.set(defaultBreed);
+                    });
+                break;
+            }
+            default: {
+            }
         }
     };
 
-    getBreedList();
+    const unsubscribe = animal.subscribe((value) => {
+        getBreedList(value);
+    });
+    onDestroy(unsubscribe);
 </script>
 
 <style>
@@ -27,6 +60,6 @@
 
 <select bind:value={$selected}>
     {#each $breeds as breed}
-        <option value={breed}>{breed}</option>
+        <option value={breed}>{breed.name}</option>
     {/each}
 </select>

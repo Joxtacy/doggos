@@ -1,34 +1,37 @@
 <script lang="ts">
-    import type { DogResponse } from "../types/types";
+    import type { CatResponse } from "../types/types";
     import { onDestroy } from "svelte";
     import { selected } from "../stores";
     import Spinner from "./Spinner.svelte";
 
-    let data: Promise<DogResponse>;
+    let data: Promise<CatResponse>;
 
-    const getDog = async (): Promise<DogResponse> => {
-        return new Promise<DogResponse>(async (resolve, reject) => {
+    const getCat = async (): Promise<CatResponse> => {
+        return new Promise<CatResponse>(async (resolve, reject) => {
             const random = $selected.name === "random";
             const url = random
-                ? "https://dog.ceo/api/breeds/image/random"
-                : `https://dog.ceo/api/breed/${$selected.name}/images/random`;
-            return fetch(url)
+                ? "https://api.thecatapi.com/v1/images/search"
+                : `https://api.thecatapi.com/v1/images/search?breed_ids=${$selected.id}`;
+            const headers = {
+                "x-api-key": "199e9233-ea1f-495c-8818-1e680ed0a4f1",
+            };
+            return fetch(url, { headers })
                 .then((res) => res.json())
-                .then((json) => resolve(json))
+                .then((json) => resolve(json[0]))
                 .catch(() => reject({ message: "Something went wrong" }));
         });
     };
 
-    const renewDoggo = () => {
-        data = getDog();
+    const renewKitty = () => {
+        data = getCat();
     };
 
-    const unsubscribe = selected.subscribe(renewDoggo);
+    const unsubscribe = selected.subscribe(renewKitty);
     onDestroy(unsubscribe);
 </script>
 
 <style>
-    .dog-container {
+    .cat-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -48,7 +51,7 @@
         width: 100%;
     }
 
-    .new-doggo-button {
+    .new-kitty-button {
         border: none;
         background-color: #ff3e00;
         color: white;
@@ -59,11 +62,11 @@
         box-shadow: 2px 2px 20px 5px rgba(0, 0, 0, 0.3);
     }
 
-    .new-doggo-button:hover {
+    .new-kitty-button:hover {
         opacity: 0.8;
     }
 
-    .new-doggo-button:active {
+    .new-kitty-button:active {
         background-color: #ff3e00;
         border: none;
         top: 1px;
@@ -79,20 +82,20 @@
 </style>
 
 <svelte:head>
-    <title>Doggos</title>
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <title>Kitties</title>
+    <link rel="icon" type="image/png" href="./favicon_kitty.png" />
 </svelte:head>
 
-<div class="dog-container">
+<div class="cat-container">
     <div class="image-container">
         {#await data}
             <Spinner />
         {:then result}
-            <img src={result.message} alt="Random Doggo" />
+            <img src={result.url} alt="Random Kitty" />
         {:catch error}
             <div>oh noes {error.message.toLowerCase()}</div>
         {/await}
     </div>
-    <button on:click|preventDefault={renewDoggo} class="new-doggo-button">New
-        Doggo</button>
+    <button on:click|preventDefault={renewKitty} class="new-kitty-button">New
+        Kitty</button>
 </div>
