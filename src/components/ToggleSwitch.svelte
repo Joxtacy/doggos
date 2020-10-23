@@ -43,6 +43,24 @@
         left: 6.5vw;
         background: white;
     }
+
+    .toggle-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    span {
+        text-transform: uppercase;
+        font-size: 5vw;
+        font-weight: 100;
+        color: #ff3e00;
+        margin: 0 1rem;
+    }
 </style>
 
-<input type="checkbox" bind:checked />
+<div class="toggle-container">
+    <span>Cats</span>
+    <input type="checkbox" bind:checked />
+    <span>Dogs</span>
+</div>

@@ -54,7 +54,10 @@
     select {
         min-width: 20ch;
         text-transform: capitalize;
-        margin: 1rem;
+        margin: 1vw;
+        width: 100%;
+        background-color: white;
+        color: #ff3e00;
     }
 </style>
 

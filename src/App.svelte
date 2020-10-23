@@ -26,6 +26,7 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
+        max-width: 600px;
     }
 
     @media screen and (min-width: 768px) {
@@ -41,8 +42,8 @@
     {:else if $animal === 'cat'}
         <h1>Kitty randomizer</h1>
     {/if}
-    <ToggleSwitch checked />
     <div class="doggo-container">
+        <ToggleSwitch checked />
         <BreedPicker />
         {#if $animal === 'dog'}
             <DogCard />
