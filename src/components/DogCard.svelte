@@ -27,7 +27,9 @@
     onDestroy(unsubscribe);
 </script>
 
-<style>
+<style lang="scss">
+    @use "../styles/styles";
+
     .dog-container {
         display: flex;
         flex-direction: column;
@@ -50,24 +52,24 @@
 
     .new-doggo-button {
         border: none;
-        background-color: #ff3e00;
+        background-color: styles.$color;
         color: white;
         border-radius: 1rem;
         padding: 1rem;
         margin: 1rem;
         position: relative;
         box-shadow: 2px 2px 20px 5px rgba(0, 0, 0, 0.3);
-    }
 
-    .new-doggo-button:hover {
-        opacity: 0.8;
-    }
+        &:active {
+            background-color: styles.$color;
+            border: none;
+            top: 1px;
+            left: 1px;
+        }
 
-    .new-doggo-button:active {
-        background-color: #ff3e00;
-        border: none;
-        top: 1px;
-        left: 1px;
+        &:hover {
+            opacity: 0.8;
+        }
     }
 
     img {

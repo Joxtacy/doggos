@@ -6,14 +6,16 @@
     import ToggleSwitch from "./components/ToggleSwitch.svelte";
 </script>
 
-<style>
+<style lang="scss">
+    @use "./styles/styles";
+
     main {
         text-align: center;
         margin: 0 auto;
     }
 
     h1 {
-        color: #ff3e00;
+        color: styles.$color;
         margin: 0;
         text-transform: uppercase;
         font-size: 10vw;

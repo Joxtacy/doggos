@@ -50,14 +50,16 @@
     onDestroy(unsubscribe);
 </script>
 
-<style>
+<style lang="scss">
+    @use "../styles/styles";
+
     select {
         min-width: 20ch;
         text-transform: capitalize;
         margin: 1vw;
         width: 100%;
         background-color: white;
-        color: #ff3e00;
+        color: styles.$color;
     }
 </style>
 
