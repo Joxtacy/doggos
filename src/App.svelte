@@ -4,6 +4,9 @@
     import CatCard from "./components/CatCard.svelte";
     import BreedPicker from "./components/BreedPicker.svelte";
     import ToggleSwitch from "./components/ToggleSwitch.svelte";
+
+    let isDog = $animal === "dog";
+    $: $animal = isDog ? "dog" : "cat";
 </script>
 
 <style lang="scss">
@@ -48,7 +51,7 @@
         <h1>Kitty randomizer</h1>
     {/if}
     <div class="doggo-container">
-        <ToggleSwitch checked />
+        <ToggleSwitch bind:checked={isDog} before="Cats" after="Dogs" />
         <BreedPicker />
         {#if $animal === 'dog'}
             <DogCard />

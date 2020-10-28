@@ -1,11 +1,7 @@
 <script lang="ts">
-    import { animal } from "../stores";
-
     export let checked = false;
-
-    $: {
-        checked ? animal.set("dog") : animal.set("cat");
-    }
+    export let before = "";
+    export let after = "";
 </script>
 
 <style lang="scss">
@@ -62,7 +58,7 @@
 </style>
 
 <div class="toggle-container">
-    <span>Cats</span>
+    <span>{before}</span>
     <input type="checkbox" bind:checked />
-    <span>Dogs</span>
+    <span>{after}</span>
 </div>
