@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { animal } from "./stores";
+    import { animal, darkMode } from "./stores";
     import DogCard from "./components/DogCard.svelte";
     import CatCard from "./components/CatCard.svelte";
     import BreedPicker from "./components/BreedPicker.svelte";
@@ -12,6 +12,9 @@
     main {
         text-align: center;
         margin: 0 auto;
+        height: 100%;
+        background-color: white;
+        overflow-y: auto;
     }
 
     h1 {
@@ -38,7 +41,7 @@
     }
 </style>
 
-<main>
+<main class:dark={$darkMode}>
     {#if $animal === 'dog'}
         <h1>Doggo randomizer</h1>
     {:else if $animal === 'cat'}
@@ -52,5 +55,8 @@
         {:else if $animal === 'cat'}
             <CatCard />
         {/if}
+    </div>
+    <div class="darkmode-toggle">
+        <ToggleSwitch bind:checked={$darkMode} before="☀️" after="🌙" />
     </div>
 </main>

@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { DogResponse } from "../types/types";
     import { onDestroy } from "svelte";
-    import { selected } from "../stores";
+    import { darkMode, selected } from "../stores";
     import Spinner from "./Spinner.svelte";
 
     let data: Promise<DogResponse>;
@@ -76,7 +76,7 @@
         height: 100%;
         width: 100%;
         background-color: whitesmoke;
-        object-fit: contain;
+        object-fit: cover;
     }
 </style>
 
@@ -90,7 +90,7 @@
         {#await data}
             <Spinner />
         {:then result}
-            <img src={result.message} alt="Random Doggo" />
+            <img src={result.message} alt="Random Doggo" class:dark={$darkMode} />
         {:catch error}
             <div>oh noes {error.message.toLowerCase()}</div>
         {/await}
