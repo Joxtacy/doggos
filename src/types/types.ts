@@ -15,3 +15,13 @@ export interface CatResponse {
     width: number;
     height: number;
 }
+
+export type JsonValue =
+    | string
+    | number
+    | boolean
+    | null
+    | JsonValue[]
+    | { [key: string]: JsonValue };
+
+export type UnaryOperator<T> = (value: T) => T;
