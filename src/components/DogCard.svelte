@@ -75,8 +75,7 @@
     img {
         height: 100%;
         width: 100%;
-        background-color: whitesmoke;
-        object-fit: cover;
+        object-fit: contain;
     }
 </style>
 
