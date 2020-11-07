@@ -9,8 +9,8 @@
         "test": "echo \"Warning: no tests to run\" && exit 0"
     },
     "devDependencies": {
-        "@rollup/plugin-commonjs": "^14.0.0",
-        "@rollup/plugin-node-resolve": "^8.0.0",
+        "@rollup/plugin-commonjs": "^15.1.0",
+        "@rollup/plugin-node-resolve": "^10.0.0",
         "@rollup/plugin-typescript": "^6.0.0",
         "@tsconfig/svelte": "^1.0.0",
         "rollup": "^2.32.1",
@@ -22,7 +22,7 @@
         "svelte-check": "^1.1.2",
         "svelte-preprocess": "^4.5.2",
         "tslib": "^2.0.0",
-        "typescript": "^3.9.3"
+        "typescript": "^4.0.5"
     },
     "dependencies": {
         "sirv-cli": "^1.0.0"
