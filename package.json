@@ -5,7 +5,8 @@
         "build": "rollup -c",
         "dev": "rollup -c -w",
         "start": "sirv public --host",
-        "validate": "svelte-check"
+        "validate": "svelte-check",
+        "test": "echo \"Warning: no tests to run\" && exit 0"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^14.0.0",
