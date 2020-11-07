@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onDestroy } from "svelte";
     import { breeds, selected, animal } from "../stores";
+    import type { Breed } from "../types/types";
 
     const getBreedList = (animal: string) => {
         const defaultBreed = {
@@ -29,7 +30,7 @@
                     .then((json) => {
                         const catBreeds = [
                             defaultBreed,
-                            ...json.map((breed) => ({
+                            ...json.map((breed: Breed) => ({
                                 id: breed.id,
                                 name: breed.name,
                             })),
