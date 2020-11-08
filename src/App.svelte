@@ -24,8 +24,9 @@
         color: styles.$color;
         margin: 0;
         text-transform: uppercase;
-        font-size: 10vw;
+        font-size: 5vw;
         font-weight: 100;
+        display: none;
     }
 
     .doggo-container {
@@ -39,6 +40,7 @@
 
     @media screen and (min-width: 768px) {
         h1 {
+            display: initial;
             padding: 1rem;
         }
     }
