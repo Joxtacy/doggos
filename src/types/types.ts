@@ -21,6 +21,8 @@ export interface CatResponse {
     height: number;
 }
 
+export type Animals = "dog" | "cat";
+
 export type JsonValue =
     | string
     | number
