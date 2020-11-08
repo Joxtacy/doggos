@@ -52,32 +52,11 @@
         width: 100%;
     }
 
-    .new-doggo-button {
-        border: none;
-        background-color: styles.$color;
-        color: white;
-        border-radius: 1rem;
-        padding: 1rem;
-        margin: 1rem;
-        position: relative;
-        box-shadow: 2px 2px 20px 5px rgba(0, 0, 0, 0.3);
-
-        &:active {
-            background-color: styles.$color;
-            border: none;
-            top: 1px;
-            left: 1px;
-        }
-
-        &:hover {
-            opacity: 0.8;
-        }
-    }
-
     img {
         height: 100%;
         width: 100%;
         object-fit: contain;
+        cursor: pointer;
     }
 </style>
 
@@ -91,11 +70,9 @@
         {#await data}
             <Spinner />
         {:then result}
-            <img src={result} alt="Random Doggo" class:dark={$darkMode} />
+            <img src={result} alt="Random Doggo" class:dark={$darkMode} on:click={renewDoggo} />
         {:catch error}
             <div>oh noes {error.message.toLowerCase()}</div>
         {/await}
     </div>
-    <button on:click|preventDefault={renewDoggo} class="new-doggo-button">New
-        Doggo</button>
 </div>
