@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { CatResponse } from "../types/types";
+    import type { CatResponse, ErrorResponse, RejectFn } from "../types/types";
     import { onDestroy } from "svelte";
     import { darkMode, selected } from "../stores";
     import Spinner from "./Spinner.svelte";
@@ -7,7 +7,7 @@
     let data: Promise<CatResponse>;
 
     const getCat = async (): Promise<CatResponse> => {
-        return new Promise<CatResponse>(async (resolve, reject) => {
+        return new Promise<CatResponse>(async (resolve, reject: RejectFn<ErrorResponse>) => {
             const random = $selected.name === "random";
             const url = random
                 ? "https://api.thecatapi.com/v1/images/search"

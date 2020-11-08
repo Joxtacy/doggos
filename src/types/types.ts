@@ -3,8 +3,13 @@ export interface Breed {
     name: string;
 }
 
-export interface DogResponse {
+export interface APIResponse {
     message: string;
+}
+
+export interface ErrorResponse extends APIResponse {}
+
+export interface DogResponse extends APIResponse {
     status: string;
 }
 
@@ -25,3 +30,5 @@ export type JsonValue =
     | { [key: string]: JsonValue };
 
 export type UnaryOperator<T> = (value: T) => T;
+
+export type RejectFn<T> = (reason: T) => void;
