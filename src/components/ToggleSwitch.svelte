@@ -34,7 +34,13 @@
             transition: all 0.5s ease;
         }
         &:checked {
-            box-shadow: inset 0 0 100px rgba(red(styles.$color), green(styles.$color), blue(styles.$color), 1),
+            box-shadow: inset 0 0 100px
+                    rgba(
+                        red(styles.$color),
+                        green(styles.$color),
+                        blue(styles.$color),
+                        1
+                    ),
                 2px 2px 5px rgba(0, 0, 0, 0.2);
             &::before {
                 left: calc(var(--m) * 45px);

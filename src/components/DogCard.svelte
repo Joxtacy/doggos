@@ -7,18 +7,20 @@
     let data: Promise<string>;
 
     const getDog = async (): Promise<string> => {
-        return new Promise<string>(async (resolve, reject: RejectFn<ErrorResponse>) => {
-            const random = $selected.name === "random";
-            const url = random
-                ? "https://dog.ceo/api/breeds/image/random"
-                : `https://dog.ceo/api/breed/${$selected.name}/images/random`;
-            return fetch(url)
-                .then((res) => res.json())
-                .then((json: DogResponse) => fetch(json.message))
-                .then((res) => res.blob())
-                .then((pic) => resolve(URL.createObjectURL(pic)))
-                .catch(() => reject({ message: "Something went wrong" }));
-        });
+        return new Promise<string>(
+            async (resolve, reject: RejectFn<ErrorResponse>) => {
+                const random = $selected.name === "random";
+                const url = random
+                    ? "https://dog.ceo/api/breeds/image/random"
+                    : `https://dog.ceo/api/breed/${$selected.name}/images/random`;
+                return fetch(url)
+                    .then((res) => res.json())
+                    .then((json: DogResponse) => fetch(json.message))
+                    .then((res) => res.blob())
+                    .then((pic) => resolve(URL.createObjectURL(pic)))
+                    .catch(() => reject({ message: "Something went wrong" }));
+            }
+        );
     };
 
     const renewDoggo = () => {
@@ -70,7 +72,11 @@
         {#await data}
             <Spinner />
         {:then result}
-            <img src={result} alt="Random Doggo" class:dark={$darkMode} on:click={renewDoggo} />
+            <img
+                src={result}
+                alt="Random Doggo"
+                class:dark={$darkMode}
+                on:click={renewDoggo} />
         {:catch error}
             <div>oh noes {error.message.toLowerCase()}</div>
         {/await}
