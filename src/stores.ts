@@ -1,5 +1,5 @@
 import { Writable, writable, get } from "svelte/store";
-import type { Breed, JsonValue, UnaryOperator } from "./types/types";
+import type { Animals, Breed, JsonValue, UnaryOperator } from "./types/types";
 
 export const breeds: Writable<Breed[]> = writable([
     { id: "random", name: "random" },
@@ -9,8 +9,6 @@ export const selected: Writable<Breed> = writable({
     id: "random",
     name: "random",
 });
-
-export const animal: Writable<string> = writable("dog");
 
 /**
  * This function creates a Svelte store that also saves its data
@@ -39,7 +37,7 @@ const createLocalStore = <T extends JsonValue>(
     const { subscribe, set } = store;
 
     const localSet = (value: T) => {
-        localStorage.setItem(key, value.toString());
+        localStorage.setItem(key, toString(value));
         set(value);
     };
 
@@ -56,3 +54,8 @@ const createLocalStore = <T extends JsonValue>(
 };
 
 export const darkMode = createLocalStore<boolean>("dark", false);
+
+export const animal: Writable<Animals> = createLocalStore<Animals>(
+    "animal",
+    "dog"
+);

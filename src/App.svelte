@@ -24,8 +24,9 @@
         color: styles.$color;
         margin: 0;
         text-transform: uppercase;
-        font-size: 10vw;
+        font-size: 5vw;
         font-weight: 100;
+        display: none;
     }
 
     .doggo-container {
@@ -39,6 +40,7 @@
 
     @media screen and (min-width: 768px) {
         h1 {
+            display: initial;
             padding: 1rem;
         }
     }
@@ -51,7 +53,11 @@
         <h1>Kitty randomizer</h1>
     {/if}
     <div class="doggo-container">
-        <ToggleSwitch bind:checked={isDog} before="Cats" after="Dogs" />
+        <ToggleSwitch
+            bind:checked={isDog}
+            before="Cats"
+            after="Dogs"
+            size={0.75} />
         <BreedPicker />
         {#if $animal === 'dog'}
             <DogCard />
@@ -60,6 +66,10 @@
         {/if}
     </div>
     <div class="darkmode-toggle">
-        <ToggleSwitch bind:checked={$darkMode} before="☀️" after="🌙" />
+        <ToggleSwitch
+            bind:checked={$darkMode}
+            before="☀️"
+            after="🌙"
+            size={0.5} />
     </div>
 </main>
