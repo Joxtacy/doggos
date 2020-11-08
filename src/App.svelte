@@ -51,7 +51,11 @@
         <h1>Kitty randomizer</h1>
     {/if}
     <div class="doggo-container">
-        <ToggleSwitch bind:checked={isDog} before="Cats" after="Dogs" />
+        <ToggleSwitch
+            bind:checked={isDog}
+            before="Cats"
+            after="Dogs"
+            size={0.75} />
         <BreedPicker />
         {#if $animal === 'dog'}
             <DogCard />
@@ -60,6 +64,10 @@
         {/if}
     </div>
     <div class="darkmode-toggle">
-        <ToggleSwitch bind:checked={$darkMode} before="☀️" after="🌙" />
+        <ToggleSwitch
+            bind:checked={$darkMode}
+            before="☀️"
+            after="🌙"
+            size={0.5} />
     </div>
 </main>

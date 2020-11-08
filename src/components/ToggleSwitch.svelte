@@ -2,6 +2,7 @@
     export let checked = false;
     export let before = "";
     export let after = "";
+    export let size = 1;
 </script>
 
 <style lang="scss">
@@ -9,34 +10,34 @@
 
     input {
         z-index: 3;
-        width: 10vw;
-        height: 4vw;
+        width: calc(var(--m) * 80px);
+        height: calc(var(--m) * 40px);
         -webkit-appearance: none;
         position: relative;
         margin: 0;
         outline: none;
         border: none;
         cursor: pointer;
-        border-radius: 2.5vw;
+        border-radius: calc(var(--m) * 20px);
         background: white;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         transition: all 0.5s ease;
         &:before {
             content: "";
             position: absolute;
-            width: 3vw;
-            height: 3vw;
-            border-radius: 1.5vw;
+            width: calc(var(--m) * 30px);
+            height: calc(var(--m) * 30px);
+            border-radius: calc(var(--m) * 15px);
             background: styles.$color;
-            left: 0.5vw;
-            top: 0.5vw;
+            left: calc(var(--m) * 5px);
+            top: calc(var(--m) * 5px);
             transition: all 0.5s ease;
         }
         &:checked {
             box-shadow: inset 0 0 100px rgba(red(styles.$color), green(styles.$color), blue(styles.$color), 1),
                 2px 2px 5px rgba(0, 0, 0, 0.2);
             &::before {
-                left: 6.5vw;
+                left: calc(var(--m) * 45px);
                 background: white;
             }
         }
@@ -50,14 +51,14 @@
 
     span {
         text-transform: uppercase;
-        font-size: 5vw;
+        font-size: calc(var(--m) * 40px);
         font-weight: 100;
         color: styles.$color;
-        margin: 0 1rem;
+        margin: 0 calc(var(--m) * 5px);
     }
 </style>
 
-<div class="toggle-container">
+<div class="toggle-container" style={`--m: ${size}`}>
     <span>{before}</span>
     <input type="checkbox" bind:checked />
     <span>{after}</span>
