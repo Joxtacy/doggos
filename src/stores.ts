@@ -39,7 +39,7 @@ const createLocalStore = <T extends JsonValue>(
     const { subscribe, set } = store;
 
     const localSet = (value: T) => {
-        localStorage.setItem(key, value.toString());
+        localStorage.setItem(key, toString(value));
         set(value);
     };
 
