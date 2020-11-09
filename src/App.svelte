@@ -3,7 +3,7 @@
     import DogCard from "./components/DogCard.svelte";
     import CatCard from "./components/CatCard.svelte";
     import BreedPicker from "./components/BreedPicker.svelte";
-    import ToggleSwitch from "./components/ToggleSwitch.svelte";
+    import NavBar from "./components/NavBar.svelte";
 
     let isDog = $animal === "dog";
     $: $animal = isDog ? "dog" : "cat";
@@ -18,15 +18,15 @@
         height: 100%;
         background-color: white;
         overflow-y: auto;
+        padding-left: 80px;
     }
 
     h1 {
         color: styles.$color;
         margin: 0;
         text-transform: uppercase;
-        font-size: 5vw;
+        font-size: 8vw;
         font-weight: 100;
-        display: none;
     }
 
     .doggo-container {
@@ -44,32 +44,36 @@
             padding: 1rem;
         }
     }
+
+    @media screen and (max-width: 768px) {
+        main {
+            padding-left: initial;
+            padding-bottom: 80px;
+            height: calc(100% - 80px);
+        }
+    }
+
+    .container {
+        height: 100%;
+        position: relative;
+    }
 </style>
 
-<main class:dark={$darkMode}>
-    {#if $animal === 'dog'}
-        <h1>Doggo randomizer</h1>
-    {:else if $animal === 'cat'}
-        <h1>Kitty randomizer</h1>
-    {/if}
-    <div class="doggo-container">
-        <ToggleSwitch
-            bind:checked={isDog}
-            before="Cats"
-            after="Dogs"
-            size={0.75} />
-        <BreedPicker />
+<div class="container">
+    <NavBar />
+    <main class:dark={$darkMode}>
         {#if $animal === 'dog'}
-            <DogCard />
+            <h1>Doggo randomizer</h1>
         {:else if $animal === 'cat'}
-            <CatCard />
+            <h1>Kitty randomizer</h1>
         {/if}
-    </div>
-    <div class="darkmode-toggle">
-        <ToggleSwitch
-            bind:checked={$darkMode}
-            before="☀️"
-            after="🌙"
-            size={0.5} />
-    </div>
-</main>
+        <div class="doggo-container">
+            <BreedPicker />
+            {#if $animal === 'dog'}
+                <DogCard />
+            {:else if $animal === 'cat'}
+                <CatCard />
+            {/if}
+        </div>
+    </main>
+</div>

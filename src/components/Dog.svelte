@@ -3,13 +3,21 @@
     export let secondary = "currentColor";
 </script>
 
+<style lang="scss">
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
 <svg
+    on:click
     aria-hidden="true"
     focusable="false"
     data-icon="dog"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 576 512">
+    viewBox="0 0 576 576">
     <g>
         <path fill={secondary} d="M448,278,299,224l21-26,128,46Z" />
         <path

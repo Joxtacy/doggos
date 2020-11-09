@@ -2,7 +2,16 @@
     export let fillColor = "none";
     export let strokeColor = "currentColor";
 </script>
+
+<style lang="scss">
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
 <svg
+    on:click
     xmlns="http://www.w3.org/2000/svg"
     fill={fillColor}
     viewBox="0 0 24 24"
