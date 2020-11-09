@@ -3,7 +3,15 @@
     export let secondary = "currentColor";
 </script>
 
+<style lang="scss">
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
 <svg
+    on:click
     aria-hidden="true"
     focusable="false"
     data-icon="dog"
