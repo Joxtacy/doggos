@@ -25,7 +25,7 @@
         color: styles.$color;
         margin: 0;
         text-transform: uppercase;
-        font-size: 5vw;
+        font-size: 8vw;
         font-weight: 100;
     }
 
