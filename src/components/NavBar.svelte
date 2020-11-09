@@ -1,14 +1,14 @@
 <script lang="ts">
     import { animal, darkMode } from "../stores";
+    import type { Animals } from "../types/types";
     import Cat from "./Cat.svelte";
     import Dog from "./Dog.svelte";
     import Sun from "./Sun.svelte";
 
     export let closedWidth = "80px";
 
-    $: isDog = $animal === "dog";
-    function toggleAnimal() {
-        $animal = isDog ? "cat" : "dog";
+    function toggleAnimal(a: Animals): void {
+        $animal = a;
     }
 
     function toggleDarkMode() {
@@ -25,15 +25,19 @@
         height: 100vh;
         width: var(--closed-width);
         background-color: rebeccapurple;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-rows: var(--closed-width) var(--closed-width) auto var(--closed-width);
+        justify-items: center;
         align-items: center;
     }
 
     .svg-container {
         width: 60px;
         height: 60px;
-        margin-top: 10px;
+    }
+
+    .sun {
+        grid-row-start: 4;
     }
 
     @media screen and (max-width: 768px) {
@@ -42,23 +46,27 @@
             bottom: 0;
             height: var(--closed-width);
             width: 100vw;
-            flex-direction: row;
+            grid-template-rows: initial;
+            grid-template-columns: var(--closed-width) var(--closed-width) auto var(--closed-width);
         }
 
         .svg-container {
             margin-top: initial;
             margin-left: 10px;
         }
+        .sun {
+            grid-row-start: initial;
+            grid-column-start: 4;
+        }
     }
 </style>
 
 <nav style={`--closed-width: ${closedWidth};`}>
-    <div class="svg-container dog" on:click={toggleAnimal}>
-        {#if $animal === 'dog'}
-            <Dog primary={'orange'} />
-        {:else}
-            <Cat primary={'orange'} />
-        {/if}
+    <div class="svg-container dog" on:click={() => toggleAnimal('dog')}>
+        <Dog primary={$animal === 'dog' ? 'orange' : 'grey'} />
+    </div>
+    <div class="svg-container cat" on:click={() => toggleAnimal('cat')}>
+        <Cat primary={$animal === 'cat' ? 'orange' : 'grey'} />
     </div>
     <div class="svg-container sun" on:click={toggleDarkMode}>
         <Sun strokeColor={$darkMode ? 'grey' : 'yellow'} />
