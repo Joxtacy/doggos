@@ -44,14 +44,7 @@
         overflow: hidden;
         height: 100%;
         width: 100%;
-        max-width: 600px;
-    }
-    .image-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 400px;
-        width: 100%;
+        min-height: 400px;
     }
 
     img {
@@ -68,17 +61,15 @@
 </svelte:head>
 
 <div class="dog-container">
-    <div class="image-container">
-        {#await data}
-            <Spinner />
-        {:then result}
-            <img
-                src={result}
-                alt="Random Doggo"
-                class:dark={$darkMode}
-                on:click={renewDoggo} />
-        {:catch error}
-            <div>oh noes {error.message.toLowerCase()}</div>
-        {/await}
-    </div>
+    {#await data}
+        <Spinner />
+    {:then result}
+        <img
+            src={result}
+            alt="Random Doggo"
+            class:dark={$darkMode}
+            on:click={renewDoggo} />
+    {:catch error}
+        <div>oh noes {error.message.toLowerCase()}</div>
+    {/await}
 </div>

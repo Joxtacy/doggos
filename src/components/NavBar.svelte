@@ -34,6 +34,7 @@
     .svg-container {
         width: 60px;
         height: 60px;
+        cursor: pointer;
     }
 
     .sun {
